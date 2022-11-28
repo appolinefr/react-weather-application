@@ -8,7 +8,7 @@ function App() {
   return (
     <ChakraProvider>
       <div className="App">
-        <Weather />
+        <Weather placeHolder="Melbourne"/>
       </div>
     </ChakraProvider>
   );
