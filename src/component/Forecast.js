@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import ForecastDay from "./ForecastDay";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Container } from "@chakra-ui/react";
 
 export default function Forecast(props) {
   const [weather, setWeather] = useState(null);
@@ -23,7 +23,7 @@ export default function Forecast(props) {
         templateColumns={{
           base: "repeat(1, 1fr)",
           sm: "repeat(2, 1fr)",
-          md: "repeat(6, 1fr)",
+          md: "repeat(2, 1fr)",
         }}
         gap={{ base: "8", sm: "12", md: "16" }}
       >
@@ -48,16 +48,18 @@ export default function Forecast(props) {
     axios.get(url).then(handleResponse);
 
     return (
-      <ThreeDots
-        height="80"
-        width="80"
-        radius="9"
-        color="#665d8a"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClassName=""
-        visible={true}
-      />
+      <Box as={Container} maxW="7xl" mt={6} p={4} alignContent={"center"}>
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="#665d8a"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          wrapperClassName=""
+          visible={true}
+        />
+      </Box>
     );
   }
 }
