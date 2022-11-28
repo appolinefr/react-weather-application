@@ -107,7 +107,7 @@ export default function Weather(props) {
         </Box>
         <Divider mt={12} mb={12} />
         <Box as={Container} maxW="7xl" mt={10} p={4}>
-          <Forecast />
+          <Forecast coordinates={weather.coordinates} />
         </Box>
       </Box>
     );
