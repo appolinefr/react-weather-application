@@ -3,10 +3,8 @@ import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 
 import {
-  FormControl,
   Input,
   Box,
-  Divider,
   Container,
   Flex,
 } from "@chakra-ui/react";
@@ -45,9 +43,9 @@ export default function Weather(props) {
 
   if (weather.display) {
     return (
-      <Box as={Container} maxW="7xl" mt={6} p={4}>
-        <Box as={Container} maxW="7xl" mt={10} p={4}>
-          <FormControl onSubmit={handleSubmit}>
+      <Box as={Container} maxW="full" p={4} backgroundColor={"gray.100"}>
+        <Box as={Container} maxW="7xl" mt={6} p={4}>
+          <form onSubmit={handleSubmit}>
             <Flex justifyContent={"center"}>
               <Input
                 type="search"
@@ -55,14 +53,27 @@ export default function Weather(props) {
                 margin={2}
                 maxWidth={"500px"}
                 onChange={(e) => setCity(e.target.value)}
+                borderColor={"#FD56A6"}
+                focusBorderColor="#FD56A6"
+                backgroundColor={"white"}
               />
-              <Input type="submit" margin={2} maxWidth={"120px"} />
+              <Input
+                type={"submit"}
+                margin={2}
+                maxWidth={"120px"}
+                bg="#FD56A6"
+                color="white"
+                _hover={{
+                  bg: "white",
+                  color: "#FD56A6",
+                  borderColor: "#FD56A6",
+                }}
+              />
             </Flex>
-          </FormControl>
+          </form>
         </Box>
         <CurrentWeather data={weather} />
-        <Divider mt={12} mb={12} />
-        <Box as={Container} maxW="7xl" mt={10} p={4}>
+        <Box as={Container} maxW="7xl" mb={8} mt={2} p={4}>
           <Forecast coordinates={weather.coordinates} />
         </Box>
       </Box>

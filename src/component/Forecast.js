@@ -12,6 +12,15 @@ export default function Forecast(props) {
     setLoaded(false);
   }, [props.coordinates]);
 
+  function getWeather() {
+    let lat = props.coordinates.lat;
+    let lon = props.coordinates.lon;
+    let APIKey = "9915cf3d854b5f563abb5811b69f8cd9";
+    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}&units=metric`;
+
+    axios.get(url).then(handleResponse);
+  }
+
   function handleResponse(response) {
     console.log(response.data);
     setWeather(response.data.daily);
@@ -21,16 +30,22 @@ export default function Forecast(props) {
     return (
       <Grid
         templateColumns={{
-          base: "repeat(1, 1fr)",
+          base: "repeat(2, 1fr)",
           sm: "repeat(2, 1fr)",
-          md: "repeat(2, 1fr)",
+          md: "repeat(3, 1fr)",
+          // lg: "repeat(6, 1fr)",
         }}
-        gap={{ base: "8", sm: "12", md: "16" }}
+        gap={{ base: "8", sm: "10", md: "12" }}
       >
         {weather.map((dailyWeather, index) => {
-          if (index < 5) {
+          if (index < 6) {
             return (
-              <GridItem key={index}>
+              <GridItem
+                key={index}
+                backgroundColor={"white"}
+                p={5}
+                borderRadius={4}
+              >
                 <ForecastDay data={dailyWeather} />
               </GridItem>
             );
@@ -41,12 +56,7 @@ export default function Forecast(props) {
       </Grid>
     );
   } else {
-    let lat = props.coordinates.lat;
-    let lon = props.coordinates.lon;
-    let APIKey = "9915cf3d854b5f563abb5811b69f8cd9";
-    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}&units=metric`;
-    axios.get(url).then(handleResponse);
-
+    getWeather();
     return (
       <Box as={Container} maxW="7xl" mt={6} p={4} alignContent={"center"}>
         <ThreeDots

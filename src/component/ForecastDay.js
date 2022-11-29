@@ -21,15 +21,16 @@ export default function ForecastDay(props) {
   }
 
   return (
-    <VStack alignItems="flex-end" spacing="20px">
-      <Text>{day()}</Text>
+    <VStack alignItems="center" spacing="20px">
+      <Text color={"#FD56A6"}>{day()}</Text>
       <Image
-        src={`http://openweathermap.org/img/wn/${props.data.icon}@2x.png`}
+        src={`http://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`}
         alt={props.data.description}
-        width="36"
+        width="26"
       ></Image>
-      <Text>{maxTemperature()}</Text>
-      <Text>{minTemperature()}</Text>
+      <Text>
+        {minTemperature()} ° | {maxTemperature()} °
+      </Text>
     </VStack>
   );
 }
