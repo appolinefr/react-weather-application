@@ -33,7 +33,6 @@ export default function Forecast(props) {
           base: "repeat(2, 1fr)",
           sm: "repeat(2, 1fr)",
           md: "repeat(3, 1fr)",
-          // lg: "repeat(6, 1fr)",
         }}
         gap={{ base: "8", sm: "10", md: "12" }}
       >

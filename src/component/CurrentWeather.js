@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "moment";
 
 import {
   Box,
@@ -15,6 +16,10 @@ import {
 import { WiStrongWind, WiThermometer, WiHumidity } from "react-icons/wi";
 
 export default function CurrentWeather(props) {
+    function date() {
+      const formatDate = Moment().format("dddd, hh:mm a")
+      return( `${formatDate}`) ;
+    }
   return (
     <Box as={Container} maxW="7xl" mt={10} p={4}>
       <Grid
@@ -36,24 +41,65 @@ export default function CurrentWeather(props) {
               width="36"
               color={"#FD56A6"}
             />
-            <Text textTransform={"capitalize"}>{props.data.description}</Text>
+            <Text
+              textTransform={"capitalize"}
+              fontSize="xl"
+              fontWeight="400"
+              color={"gray.600"}
+            >
+              {props.data.description}
+            </Text>
           </VStack>
         </GridItem>
         <GridItem p={4} backgroundColor={"white"} borderRadius={8}>
-          <VStack justifyContent={"center"} spacing="60px" my={4}>
+          <VStack
+            justifyContent={"center"}
+            alignItems={"center"}
+            spacing="40px"
+            my={4}
+          >
+            <Text
+              alignself={"center"}
+              mb={2}
+              fontSize="xl"
+              fontWeight="400"
+              color={"gray.600"}
+            >
+              {date()}
+            </Text>
             <Flex>
               <WiThermometer color={"#FD56A6"} size={32} alignself={"center"} />
-              <Text fontSize={"lg"} alignself={"center"}>
+              <Text
+                fontSize={"lg"}
+                alignself={"center"}
+                fontWeight="500"
+                color={"gray.600"}
+              >
                 {props.data.temperature} °
               </Text>
             </Flex>
             <Flex>
               <WiHumidity size={32} color={"#FD56A6"} alignself={"center"} />
-              <Text alignSelf={"center"}>{props.data.humidity} %</Text>
+              <Text
+                alignSelf={"center"}
+                fontWeight="500"
+                color={"gray.600"}
+                fontSize={"lg"}
+              >
+                {props.data.humidity} %
+              </Text>
             </Flex>
             <Flex>
               <WiStrongWind size={32} color={"#FD56A6"} alignself={"center"} />
-              <Text alignSelf={"center"}>{props.data.wind} km/h</Text>
+              <Text
+                alignSelf={"center"}
+                fontWeight="500"
+                color={"gray.600"}
+                fontSize={"lg"}
+              >
+                {" "}
+                {props.data.wind} km/h
+              </Text>
             </Flex>
           </VStack>
         </GridItem>

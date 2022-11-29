@@ -25,6 +25,7 @@ export default function Weather(props) {
     console.log(response.data);
     setWeather({
       display: true,
+      date:response.data.dt,
       coordinates: response.data.coord,
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
