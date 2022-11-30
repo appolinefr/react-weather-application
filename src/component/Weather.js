@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 
-import {
-  Input,
-  Box,
-  Container,
-  Flex,
-} from "@chakra-ui/react";
+import { Input, Box, Container, Flex } from "@chakra-ui/react";
 
 import Forecast from "./Forecast";
-import CurrentWeather from "./CurrentWeather";
+import CurrentWeather from "./CurrentWeather/CurrentWeather";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.placeHolder);
@@ -22,12 +17,12 @@ export default function Weather(props) {
   }
 
   function handleResponse(response) {
-    console.log(response.data);
     setWeather({
       display: true,
-      date:response.data.dt,
+      date: response.data.dt,
       coordinates: response.data.coord,
       temperature: Math.round(response.data.main.temp),
+      feels: Math.round(response.data.main.feels_like),
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
       description: response.data.weather[0].description,

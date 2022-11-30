@@ -30,8 +30,11 @@ export default function ForecastDay(props) {
         alt={props.data.description}
         width="26"
       ></Image>
-      <Text fontWeight="500" color={"gray.600"} fontSize={"lg"}>
-        {minTemperature()} ° | {maxTemperature()} °
+      <Text fontWeight="500" color={"gray.500"} fontSize={"lg"}>
+        {minTemperature()} ° |{" "}
+        <Text as="span" color={"gray.700"}>
+          {maxTemperature()} °
+        </Text>
       </Text>
     </VStack>
   );

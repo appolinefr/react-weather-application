@@ -34,7 +34,7 @@ export default function Forecast(props) {
           sm: "repeat(2, 1fr)",
           md: "repeat(3, 1fr)",
         }}
-        gap={{ base: "8", sm: "10", md: "12" }}
+        gap={{ base: "6", sm: "6", md: "8" }}
       >
         {weather.map((dailyWeather, index) => {
           if (index < 6) {
@@ -43,7 +43,7 @@ export default function Forecast(props) {
                 key={index}
                 backgroundColor={"white"}
                 p={5}
-                borderRadius={4}
+                borderRadius={8}
               >
                 <ForecastDay data={dailyWeather} />
               </GridItem>
