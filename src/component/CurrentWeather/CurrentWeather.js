@@ -23,7 +23,7 @@ export default function CurrentWeather(props) {
     return `${formatDate}`;
   }
   return (
-    <Box as={Container} maxW="7xl" mt={10} p={4}>
+    <Box as={Container} maxW="7xl" mt={{"sm": 2, "md": 6, "lg": 8 }} p={4}>
       <Grid
         templateColumns={{
           base: "repeat(1, 1fr)",
