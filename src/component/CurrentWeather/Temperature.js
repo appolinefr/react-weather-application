@@ -2,26 +2,18 @@ import React from "react";
 
 import { GridItem, Flex, Text } from "@chakra-ui/react";
 
-import { WiThermometer } from "react-icons/wi";
+// import { WiThermometer } from "react-icons/wi";
 
 export default function Temperature(props) {
   return (
-    <GridItem backgroundColor={"white"} borderRadius={12} p={4}>
-      <Flex alignItems={"center"} justifyContent={"center"}>
+    <GridItem borderRadius={12} p={4}>
+      <Flex align={"center"} justifyContent={"center"}>
+        {/* <WiThermometer color={"orange"} alignSelf={"center"} size={32} alignself={"center"} /> */}
         <Text
-          fontSize={"lg"}
+          fontSize={"4xl"}
           alignself={"center"}
           fontWeight="500"
-          color={"gray.600"}
-        >
-          Temp
-        </Text>
-        <WiThermometer color={"#FD56A6"} size={32} alignself={"center"} />
-        <Text
-          fontSize={"lg"}
-          alignself={"center"}
-          fontWeight="500"
-          color={"gray.600"}
+          color={props.text}
         >
           {props.data} °
         </Text>

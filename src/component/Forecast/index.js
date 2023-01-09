@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
+
 import { ThreeDots } from "react-loader-spinner";
-import ForecastDay from "./ForecastDay";
-import { Grid, GridItem, Box, Container } from "@chakra-ui/react";
+
+import ForecastDay from "../ForecastDay";
 
 export default function Forecast(props) {
   const [weather, setWeather] = useState(null);
@@ -35,16 +37,14 @@ export default function Forecast(props) {
           md: "repeat(3, 1fr)",
         }}
         gap={{ base: "6", sm: "6", md: "8" }}
+        mb={8}
+        mt={2}
+        p={4}
       >
         {weather.map((dailyWeather, index) => {
           if (index < 6) {
             return (
-              <GridItem
-                key={index}
-                backgroundColor={"white"}
-                p={5}
-                borderRadius={8}
-              >
+              <GridItem key={index} boxShadow={"xl"} p={5} borderRadius={8}>
                 <ForecastDay data={dailyWeather} />
               </GridItem>
             );
@@ -57,7 +57,7 @@ export default function Forecast(props) {
   } else {
     getWeather();
     return (
-      <Box as={Container} maxW="7xl" mt={6} p={4} alignContent={"center"}>
+      <Box as={Center} maxW="7xl" mt={6} p={4}>
         <ThreeDots
           height="80"
           width="80"
