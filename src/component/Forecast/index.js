@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Center, Heading } from "@chakra-ui/react";
 
 import { ThreeDots } from "react-loader-spinner";
 
 import ForecastDay from "../ForecastDay";
+import HourlyWeather from "../Hourly";
 
 export default function Forecast(props) {
   const [weather, setWeather] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [hourly, setHourly] = useState(null);
 
   useEffect(() => {
     setLoaded(false);
@@ -25,34 +27,63 @@ export default function Forecast(props) {
 
   function handleResponse(response) {
     console.log(response.data);
+    setHourly(response.data.hourly);
     setWeather(response.data.daily);
     setLoaded(true);
   }
   if (loaded) {
     return (
-      <Grid
-        templateColumns={{
-          base: "repeat(2, 1fr)",
-          sm: "repeat(2, 1fr)",
-          md: "repeat(3, 1fr)",
-        }}
-        gap={{ base: "6", sm: "6", md: "8" }}
-        mb={8}
-        mt={2}
-        p={4}
-      >
-        {weather.map((dailyWeather, index) => {
-          if (index < 6) {
-            return (
-              <GridItem key={index} boxShadow={"xl"} p={5} borderRadius={8}>
-                <ForecastDay data={dailyWeather} />
-              </GridItem>
-            );
-          } else {
-            return null;
-          }
-        })}
-      </Grid>
+      <Box mb={8} mt={2} p={4}>
+        <Box backgroundColor={"gray.50"} p={4}>
+          <Heading p={4}>Today</Heading>
+          <Grid
+            templateColumns={{
+              base: "repeat(3, 1fr)",
+              md: "repeat(3, 1fr)",
+              lg: "repeat(6, 1fr)",
+            }}
+            gap={{ base: "6", sm: "6", md: "8" }}
+            mb={8}
+            mt={2}
+          >
+            {hourly.map((hourlyWeather, index) => {
+              if (index >= 1 && index < 7) {
+                return (
+                  <GridItem key={index} boxShadow={"xl"} p={5} borderRadius={8}>
+                    <HourlyWeather data={hourlyWeather} />
+                  </GridItem>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </Grid>
+        </Box>
+        <Box p={4} mt={4}>
+          <Grid
+            templateColumns={{
+              base: "repeat(2, 1fr)",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+            }}
+            gap={{ base: "6", sm: "6", md: "8" }}
+            mb={8}
+            mt={2}
+          >
+            {weather.map((dailyWeather, index) => {
+              if (index < 6) {
+                return (
+                  <GridItem key={index} boxShadow={"xl"} p={5} borderRadius={8}>
+                    <ForecastDay data={dailyWeather} />
+                  </GridItem>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </Grid>
+        </Box>
+      </Box>
     );
   } else {
     getWeather();

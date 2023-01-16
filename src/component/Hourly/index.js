@@ -3,27 +3,21 @@ import React from "react";
 import { VStack, Text, Image } from "@chakra-ui/react";
 
 export default function ForecastDay(props) {
-  function maxTemperature() {
-    let maxTemp = Math.round(props.data.temp.max);
-    return `${maxTemp}`;
+  function temperature() {
+    let temp = Math.round(props.data.temp);
+    return `${temp}`;
   }
 
-  function minTemperature() {
-    let minTemp = Math.round(props.data.temp.min);
-    return `${minTemp}`;
-  }
-
-  function day() {
-    let date = new Date(props.data.dt * 1000);
-    let day = date.getDay();
-    let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    return days[day];
+  function time() {
+    let time = new Date(props.data.dt * 1000);
+    let hour = time.getHours();
+    return hour;
   }
 
   return (
     <VStack alignItems="center" spacing="20px">
       <Text color={"#FD56A6"} fontSize={"lg"} fontWeight={"500"}>
-        {day()}
+        {`${time()}:00`}
       </Text>
       <Image
         src={`http://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`}
@@ -31,10 +25,7 @@ export default function ForecastDay(props) {
         width="26"
       ></Image>
       <Text fontWeight="500" color={"gray.500"} fontSize={"lg"}>
-        {minTemperature()} ° |{" "}
-        <Text as="span" color={"gray.700"}>
-          {maxTemperature()} °
-        </Text>
+        {temperature()} °
       </Text>
     </VStack>
   );

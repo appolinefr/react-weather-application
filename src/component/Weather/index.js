@@ -22,6 +22,7 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.placeHolder);
   const [weather, setWeather] = useState({ display: false });
   const text = useColorModeValue("purple.700", "white");
+
   function handleSubmit(event) {
     event.preventDefault();
     getWeather();

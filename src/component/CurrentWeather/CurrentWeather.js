@@ -28,6 +28,7 @@ export default function CurrentWeather(props) {
     const formatDate = Moment().format("dddd, hh:mm a");
     return `${formatDate}`;
   }
+
   return (
     <Box maxW="full" mt={{ sm: 2, md: 6, lg: 8 }} p={4}>
       <Center
@@ -67,45 +68,14 @@ export default function CurrentWeather(props) {
       </Center>
       <Grid
         templateColumns={{
-          base: "repeat(1, 1fr)",
-          sm: "repeat(1, 1fr)",
-          md: "repeat(2, 1fr)",
+          base: "repeat(3, 1fr)",
+          md: "repeat(3, 1fr)",
+          lg: "repeat(6, 1fr)",
         }}
-        gap={36}
-      >
-        <GridItem p={4} backgroundColor={"#FD56A6"} borderRadius={8}>
-          <VStack
-            justifyContent={"center"}
-            alignItems={"center"}
-            spacing="40px"
-            my={4}
-          >
-            <Text
-              alignself={"center"}
-              mb={2}
-              fontSize="3xl"
-              fontWeight="600"
-              color={"white"}
-            >
-              {date()}
-            </Text>
-          </VStack>
-          <Grid
-            templateColumns={{
-              base: "repeat(2, 1fr)",
-              sm: "repeat(2, 1fr)",
-              md: "repeat(2, 1fr)",
-            }}
-            gap={5}
-            alignItems={"center"}
-            mt={8}
-          >
-            <FeelsLikeTemperature data={props.data.feels} />
-            <Humidity data={props.data.humidity} />
-            <Wind data={props.data.wind} />
-          </Grid>
-        </GridItem>
-      </Grid>
+        gap={{ base: "6", sm: "6", md: "8" }}
+        mb={8}
+        mt={2}
+      ></Grid>
     </Box>
   );
 }
