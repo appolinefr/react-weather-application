@@ -6,19 +6,24 @@ import { ThreeDots } from "react-loader-spinner";
 
 import ForecastDay from "../ForecastDay";
 import HourlyWeather from "../Hourly";
+import UvIndex from "../UvIndex";
+import Wind from "../Wind";
+import Humidity from "../Humidity";
+import FeelsLike from "../FeelsLike";
 
 export default function Forecast(props) {
   const [weather, setWeather] = useState(null);
+  const [current, setCurrent] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [hourly, setHourly] = useState(null);
 
   useEffect(() => {
     setLoaded(false);
-  }, [props.coordinates]);
+  }, [props.data.coordinates]);
 
   function getWeather() {
-    let lat = props.coordinates.lat;
-    let lon = props.coordinates.lon;
+    let lat = props.data.coordinates.lat;
+    let lon = props.data.coordinates.lon;
     let APIKey = "9915cf3d854b5f563abb5811b69f8cd9";
     let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}&units=metric`;
 
@@ -29,12 +34,32 @@ export default function Forecast(props) {
     console.log(response.data);
     setHourly(response.data.hourly);
     setWeather(response.data.daily);
+    setCurrent(response.data.current)
     setLoaded(true);
   }
+
   if (loaded) {
     return (
       <Box mb={8} mt={2} p={4}>
-        <Box backgroundColor={"gray.50"} p={4}>
+        <Box p={4}>
+          <Grid
+            templateColumns={{
+              base: "repeat(2, 1fr)",
+              md: "repeat(2, 1fr)",
+              lg: "repeat(4, 1fr)",
+            }}
+            gap={{ base: "6", sm: "6", md: "8" }}
+            mb={8}
+            mt={2}
+            p={4}
+          >
+            <UvIndex data={current} />
+            <Humidity data={current.humidity} />
+            <Wind data={current.wind_speed} />
+            <FeelsLike data={current.feels_like} />
+          </Grid>
+        </Box>
+        <Box p={4}>
           <Heading p={4}>Today</Heading>
           <Grid
             templateColumns={{

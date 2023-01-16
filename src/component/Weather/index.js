@@ -15,7 +15,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { BsSun, BsMoon } from "react-icons/bs";
 
 import Forecast from "../Forecast";
-import CurrentWeather from "../CurrentWeather/CurrentWeather";
+import CurrentWeather from "../CurrentWeather";
 
 export default function Weather(props) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -25,25 +25,22 @@ export default function Weather(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    getWeather();
+    getweather();
   }
 
   function handleResponse(response) {
+    console.log(response.data);
     setWeather({
       display: true,
-      date: response.data.dt,
       coordinates: response.data.coord,
-      temperature: Math.round(response.data.main.temp),
-      feels: Math.round(response.data.main.feels_like),
-      humidity: response.data.main.humidity,
-      wind: Math.round(response.data.wind.speed),
-      description: response.data.weather[0].description,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       city: response.data.name,
+      temp: response.data.main.temp,
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
     });
   }
 
-  function getWeather() {
+  function getweather() {
     let APIKey = "9915cf3d854b5f563abb5811b69f8cd9";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
     axios.get(url).then(handleResponse);
@@ -79,22 +76,19 @@ export default function Weather(props) {
             m={4}
             onClick={toggleColorMode}
             icon={colorMode === "light" ? <BsMoon /> : <BsSun w={6} h={6} />}
-            // color={dark}
             variant={"ghost"}
             alignSelf={"center"}
             _hover={{
               textDecoration: "none",
-              // color: pink,
             }}
-            // _active={{ color: pink }}
           />
         </Flex>
         <CurrentWeather data={weather} />
-        <Forecast coordinates={weather.coordinates} />
+        <Forecast data={weather} />
       </Box>
     );
   } else {
-    getWeather();
+    getweather();
     return (
       <Box as={Center} maxW="7xl" mt={6} p={4}>
         <ThreeDots

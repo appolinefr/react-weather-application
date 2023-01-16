@@ -2,7 +2,7 @@ import React from "react";
 
 import { VStack, Text, Image } from "@chakra-ui/react";
 
-export default function ForecastDay(props) {
+export default function Hourly(props) {
   function temperature() {
     let temp = Math.round(props.data.temp);
     return `${temp}`;

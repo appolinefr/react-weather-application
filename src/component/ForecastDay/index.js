@@ -29,7 +29,7 @@ export default function ForecastDay(props) {
         src={`http://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`}
         alt={props.data.weather[0].description}
         width="26"
-      ></Image>
+      />
       <Text fontWeight="500" color={"gray.500"} fontSize={"lg"}>
         {minTemperature()} ° |{" "}
         <Text as="span" color={"gray.700"}>

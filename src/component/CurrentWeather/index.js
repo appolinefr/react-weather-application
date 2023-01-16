@@ -1,12 +1,7 @@
-import React from "react";
-import Moment from "moment";
-
 import {
   Box,
   VStack,
   IconButton,
-  Grid,
-  GridItem,
   Container,
   Text,
   Image,
@@ -15,26 +10,19 @@ import {
   useColorModeValue,
   Center,
 } from "@chakra-ui/react";
+
 import { HiLocationMarker } from "react-icons/hi";
-import FeelsLikeTemperature from "./FeelsLikeTemperature";
-import Temperature from "./Temperature";
-import Wind from "./Wind";
-import Humidity from "./Humidity";
+import Temperature from "../Temperature";
 
 export default function CurrentWeather(props) {
   const text = useColorModeValue("purple.800", "white");
-
-  function date() {
-    const formatDate = Moment().format("dddd, hh:mm a");
-    return `${formatDate}`;
-  }
-
   return (
     <Box maxW="full" mt={{ sm: 2, md: 6, lg: 8 }} p={4}>
       <Center
         as={Container}
         boxShadow={"xl"}
         mt={{ sm: 2, md: 6, lg: 4 }}
+        mb={{ sm: 2, md: 6, lg: 8 }}
         p={4}
       >
         <VStack alignItems="center">
@@ -50,11 +38,12 @@ export default function CurrentWeather(props) {
               variant={"ghost"}
             />
           </Flex>
-          <Temperature color={text} data={props.data.temperature} />
+          <Temperature color={text} data={props.data.temp} />
           <Image
-            src={props.data.icon}
+            src={`http://openweathermap.org/img/wn/${props.data.icon}@2x.png`}
             alt={props.data.description}
             width="36"
+            alignself={"center"}
           />
           <Text
             textTransform={"capitalize"}
@@ -66,16 +55,6 @@ export default function CurrentWeather(props) {
           </Text>
         </VStack>
       </Center>
-      <Grid
-        templateColumns={{
-          base: "repeat(3, 1fr)",
-          md: "repeat(3, 1fr)",
-          lg: "repeat(6, 1fr)",
-        }}
-        gap={{ base: "6", sm: "6", md: "8" }}
-        mb={8}
-        mt={2}
-      ></Grid>
     </Box>
   );
 }
