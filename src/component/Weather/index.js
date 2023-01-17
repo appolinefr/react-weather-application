@@ -15,7 +15,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { BsSun, BsMoon } from "react-icons/bs";
 
 import Forecast from "../Forecast";
-import CurrentWeather from "../CurrentWeather";
+import CurrentWeather from "../CurrentWeather/Current";
 
 export default function Weather(props) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -37,6 +37,7 @@ export default function Weather(props) {
       temp: response.data.main.temp,
       description: response.data.weather[0].description,
       icon: response.data.weather[0].icon,
+      timezoneId: response.data.id
     });
   }
 
@@ -53,11 +54,11 @@ export default function Weather(props) {
         maxW="full"
         minH={"80px"}
         py={12}
-        bgGradient={
-          colorMode === "light"
-            ? "linear(to-mr,  purple.50, purple.100)"
-            : "linear(to-tr, purple.800, purple.900, gray.900)"
-        }
+        //   bgGradient={
+        //     colorMode === "light"
+        //       ? "linear(to-mr,  purple.50, purple.100)"
+        //       : "linear(to-tr, purple.800, purple.900, gray.900)"
+        //   }
       >
         <Flex justifyContent={"center"}>
           <form onSubmit={handleSubmit}>

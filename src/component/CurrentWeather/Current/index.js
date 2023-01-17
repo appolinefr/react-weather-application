@@ -9,20 +9,25 @@ import {
   Flex,
   useColorModeValue,
   Center,
+  useColorMode,
 } from "@chakra-ui/react";
 
 import { HiLocationMarker } from "react-icons/hi";
 import Temperature from "../Temperature";
 
 export default function CurrentWeather(props) {
+  const { colorMode } = useColorMode();
   const text = useColorModeValue("purple.800", "white");
   return (
-    <Box maxW="full" mt={{ sm: 2, md: 6, lg: 8 }} p={4}>
+    <Box maxW="full" mt={{ sm: 2, md: 6, lg: 4 }} p={4}>
       <Center
         as={Container}
-        boxShadow={"xl"}
+        boxShadow={{
+          sm: colorMode === "light" ? `xl` : `0px 0px 6px rgb(237, 238, 238)`,
+          md: colorMode === "light" ? `xl` : `0px 0px 10px rgb(237, 238, 238)`,
+          lg: colorMode === "light" ? `xl` : `0px 0px 13px rgb(237, 238, 238)`,
+        }}
         mt={{ sm: 2, md: 6, lg: 4 }}
-        mb={{ sm: 2, md: 6, lg: 8 }}
         p={4}
       >
         <VStack alignItems="center">

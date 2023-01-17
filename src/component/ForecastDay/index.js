@@ -1,8 +1,12 @@
 import React from "react";
 
-import { VStack, Text, Image } from "@chakra-ui/react";
+import { VStack, Text, Image , useColorModeValue} from "@chakra-ui/react";
 
 export default function ForecastDay(props) {
+  const text = useColorModeValue("gray.800", "white");
+  const data = useColorModeValue("gray.600", "gray.400");
+    const dataLight = useColorModeValue("gray.700", "gray.300");
+
   function maxTemperature() {
     let maxTemp = Math.round(props.data.temp.max);
     return `${maxTemp}`;
@@ -22,7 +26,7 @@ export default function ForecastDay(props) {
 
   return (
     <VStack alignItems="center" spacing="20px">
-      <Text color={"#FD56A6"} fontSize={"lg"} fontWeight={"500"}>
+      <Text color={text} fontSize={"lg"} fontWeight={"500"}>
         {day()}
       </Text>
       <Image
@@ -30,9 +34,9 @@ export default function ForecastDay(props) {
         alt={props.data.weather[0].description}
         width="26"
       />
-      <Text fontWeight="500" color={"gray.500"} fontSize={"lg"}>
+      <Text fontWeight="500" color={data} fontSize={"lg"}>
         {minTemperature()} ° |{" "}
-        <Text as="span" color={"gray.700"}>
+        <Text as="span" color={dataLight}>
           {maxTemperature()} °
         </Text>
       </Text>
