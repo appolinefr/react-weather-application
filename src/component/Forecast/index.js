@@ -12,6 +12,7 @@ import {
 
 import { ThreeDots } from "react-loader-spinner";
 
+import Current from "../CurrentWeather/Current";
 import ForecastDay from "../ForecastDay";
 import HourlyWeather from "../Hourly";
 import UvIndex from "../CurrentWeather/UvIndex";
@@ -41,7 +42,6 @@ export default function Forecast(props) {
 
   function handleResponse(response) {
     console.log(response.data);
-
     setHourly(response.data.hourly);
     setWeather(response.data.daily);
     setCurrent(response.data.current);
@@ -54,99 +54,105 @@ export default function Forecast(props) {
         <Box p={4}>
           <Grid
             templateColumns={{
-              base: "repeat(2, 1fr)",
+              base: "repeat(1, 1fr)",
               md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
+              lg: "repeat(2, 1fr)",
             }}
-            gap={{ base: "6", sm: "6", md: "8" }}
+            gap={{ sm: "6", md: "8", lg: "8" }}
           >
-            <GridItem
-              borderRadius={12}
-              p={4}
-              boxShadow={{
-                sm:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 6px rgb(237, 238, 238)`,
-                md:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 10px rgb(237, 238, 238)`,
-                lg:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 13px rgb(237, 238, 238)`,
-              }}
-              maxW={"350px"}
-              h={"200px"}
-            >
-              <UvIndex data={current.uvi} />
+            <GridItem>
+              <Current data={current} city={props.data.city} />
             </GridItem>
-            <GridItem
-              borderRadius={12}
-              p={4}
-              boxShadow={{
-                sm:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 6px rgb(237, 238, 238)`,
-                md:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 10px rgb(237, 238, 238)`,
-                lg:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 13px rgb(237, 238, 238)`,
-              }}
-              maxW={"350px"}
-              h={"200px"}
-            >
-              <Humidity data={current.humidity} />
-            </GridItem>
-            <GridItem
-              borderRadius={12}
-              p={4}
-              boxShadow={{
-                sm:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 6px rgb(237, 238, 238)`,
-                md:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 10px rgb(237, 238, 238)`,
-                lg:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 13px rgb(237, 238, 238)`,
-              }}
-              maxW={"350px"}
-              h={"200px"}
-            >
-              <Wind data={current.wind_speed} />
-            </GridItem>
-            <GridItem
-              borderRadius={12}
-              p={4}
-              boxShadow={{
-                sm:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 6px rgb(237, 238, 238)`,
-                md:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 10px rgb(237, 238, 238)`,
-                lg:
-                  colorMode === "light"
-                    ? `xl`
-                    : `0px 0px 13px rgb(237, 238, 238)`,
-              }}
-              maxW={"350px"}
-              h={"200px"}
-            >
-              <FeelsLike data={current.feels_like} />
+            <GridItem>
+              <Grid
+                templateColumns={{
+                  base: "repeat(2, 1fr)",
+                  md: "repeat(2, 1fr)",
+                  lg: "repeat(2, 1fr)",
+                }}
+                gap={{ sm: "4", md: "6", lg: "8" }}
+              >
+                <GridItem
+                  borderRadius={12}
+                  p={4}
+                  boxShadow={{
+                    sm:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 6px rgb(237, 238, 238)`,
+                    md:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 10px rgb(237, 238, 238)`,
+                    lg:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 13px rgb(237, 238, 238)`,
+                  }}
+                >
+                  <UvIndex data={current.uvi} />
+                </GridItem>
+                <GridItem
+                  borderRadius={12}
+                  p={4}
+                  boxShadow={{
+                    sm:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 6px rgb(237, 238, 238)`,
+                    md:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 10px rgb(237, 238, 238)`,
+                    lg:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 13px rgb(237, 238, 238)`,
+                  }}
+                >
+                  <Humidity data={current.humidity} />
+                </GridItem>
+                <GridItem
+                  borderRadius={12}
+                  p={4}
+                  boxShadow={{
+                    sm:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 6px rgb(237, 238, 238)`,
+                    md:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 10px rgb(237, 238, 238)`,
+                    lg:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 13px rgb(237, 238, 238)`,
+                  }}
+                >
+                  <Wind data={current.wind_speed} />
+                </GridItem>
+                <GridItem
+                  borderRadius={12}
+                  p={4}
+                  boxShadow={{
+                    sm:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 6px rgb(237, 238, 238)`,
+                    md:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 10px rgb(237, 238, 238)`,
+                    lg:
+                      colorMode === "light"
+                        ? `xl`
+                        : `0px 0px 13px rgb(237, 238, 238)`,
+                  }}
+                >
+                  <FeelsLike data={current.feels_like} />
+                </GridItem>
+              </Grid>
             </GridItem>
           </Grid>
         </Box>

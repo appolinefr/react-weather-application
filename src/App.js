@@ -7,7 +7,7 @@ import Weather from "./component/Weather";
 function App() {
   return (
     <ChakraProvider >
-        <Weather placeHolder="Paris"/>
+        <Weather placeHolder="Sydney"/>
     </ChakraProvider>
   );
 }
