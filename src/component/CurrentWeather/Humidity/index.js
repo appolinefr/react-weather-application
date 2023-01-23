@@ -11,10 +11,10 @@ export default function Humidity(props) {
   return (
     <VStack alignItems="center" spacing="20px" pt={4}>
       <GiWaterDrop size={50} color={"#4299E1"} alignself={"center"} />
-      <Text alignSelf={"center"} fontWeight="500" color={text} fontSize={"lg"}>
+      <Text alignSelf={"center"} fontWeight="600" color={text} fontSize={"xl"}>
         Humidity
       </Text>
-      <Text alignSelf={"center"} fontWeight="500" color={data} fontSize={"md"}>
+      <Text alignSelf={"center"} fontWeight="600" color={data} fontSize={"lg"}>
         {Math.round(props.data)} %
       </Text>
     </VStack>

@@ -6,7 +6,6 @@ import {
   Image,
   Heading,
   Flex,
-  useColorModeValue,
   useColorMode,
 } from "@chakra-ui/react";
 
@@ -15,9 +14,9 @@ import Temperature from "../Temperature";
 
 export default function CurrentWeather({ data, city }) {
   const { colorMode } = useColorMode();
-  const text = useColorModeValue("purple.800", "white");
   return (
     <Box
+      backgroundColor={colorMode === "light" ?  "whiteAlpha.500" : ""}
       borderRadius={12}
       p={4}
       boxShadow={{
@@ -28,18 +27,17 @@ export default function CurrentWeather({ data, city }) {
     >
       <VStack alignItems="center" mt={2}>
         <Flex align={"center"}>
-          <Heading m={2} fontWeight={400} fontSize={"5xl"} color={text}>
+          <Heading m={2} fontWeight={400} fontSize={"5xl"}>
             {city}
           </Heading>
           <IconButton
-            color={text}
             icon={<HiLocationMarker />}
             fontSize={"3xl"}
             m={2}
             variant={"ghost"}
           />
         </Flex>
-        <Temperature color={text} data={data.temp} />
+        <Temperature data={data.temp} />
         <Image
           src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
           alt={data.weather[0].description}
@@ -51,7 +49,6 @@ export default function CurrentWeather({ data, city }) {
           textTransform={"capitalize"}
           fontSize="2xl"
           fontWeight="500"
-          color={text}
         >
           {data.weather[0].description}
         </Text>

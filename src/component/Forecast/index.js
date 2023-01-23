@@ -14,7 +14,6 @@ import { ThreeDots } from "react-loader-spinner";
 
 import Current from "../CurrentWeather/Current";
 import ForecastDay from "../ForecastDay";
-import HourlyWeather from "../Hourly";
 import UvIndex from "../CurrentWeather/UvIndex";
 import Wind from "../CurrentWeather/Wind";
 import Humidity from "../CurrentWeather/Humidity";
@@ -24,7 +23,6 @@ export default function Forecast(props) {
   const [weather, setWeather] = useState(null);
   const [current, setCurrent] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [hourly, setHourly] = useState(null);
   const { colorMode } = useColorMode();
 
   useEffect(() => {
@@ -42,7 +40,6 @@ export default function Forecast(props) {
 
   function handleResponse(response) {
     console.log(response.data);
-    setHourly(response.data.hourly);
     setWeather(response.data.daily);
     setCurrent(response.data.current);
     setLoaded(true);
@@ -75,6 +72,9 @@ export default function Forecast(props) {
                 <GridItem
                   borderRadius={12}
                   p={4}
+                  backgroundColor={
+                    colorMode === "light" ? "whiteAlpha.500" : ""
+                  }
                   boxShadow={{
                     sm:
                       colorMode === "light"
@@ -95,6 +95,9 @@ export default function Forecast(props) {
                 <GridItem
                   borderRadius={12}
                   p={4}
+                  backgroundColor={
+                    colorMode === "light" ? "whiteAlpha.500" : ""
+                  }
                   boxShadow={{
                     sm:
                       colorMode === "light"
@@ -113,6 +116,9 @@ export default function Forecast(props) {
                   <Humidity data={current.humidity} />
                 </GridItem>
                 <GridItem
+                  backgroundColor={
+                    colorMode === "light" ? "whiteAlpha.500" : ""
+                  }
                   borderRadius={12}
                   p={4}
                   boxShadow={{
@@ -133,6 +139,9 @@ export default function Forecast(props) {
                   <Wind data={current.wind_speed} />
                 </GridItem>
                 <GridItem
+                  backgroundColor={
+                    colorMode === "light" ? "whiteAlpha.500" : ""
+                  }
                   borderRadius={12}
                   p={4}
                   boxShadow={{
@@ -157,50 +166,6 @@ export default function Forecast(props) {
           </Grid>
         </Box>
         <Box p={4}>
-          <Heading p={4}>Today</Heading>
-          <Grid
-            templateColumns={{
-              base: "repeat(3, 1fr)",
-              md: "repeat(3, 1fr)",
-              lg: "repeat(6, 1fr)",
-            }}
-            gap={{ sm: "4", md: "6", lg: "8" }}
-          >
-            {hourly.map((hourlyWeather, index) => {
-              if (index >= 1 && index < 7) {
-                return (
-                  <GridItem
-                    key={index}
-                    boxShadow={{
-                      sm:
-                        colorMode === "light"
-                          ? `xl`
-                          : `0px 0px 6px rgb(237, 238, 238)`,
-                      md:
-                        colorMode === "light"
-                          ? `xl`
-                          : `0px 0px 10px rgb(237, 238, 238)`,
-                      lg:
-                        colorMode === "light"
-                          ? `xl`
-                          : `0px 0px 13px rgb(237, 238, 238)`,
-                    }}
-                    p={5}
-                    borderRadius={8}
-                  >
-                    <HourlyWeather
-                      data={hourlyWeather}
-                      timezone={props.data.timezoneId}
-                    />
-                  </GridItem>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </Grid>
-        </Box>
-        <Box p={4}>
           <Heading p={4}>Next 6 days</Heading>
           <Grid
             templateColumns={{
@@ -215,6 +180,9 @@ export default function Forecast(props) {
                 return (
                   <GridItem
                     key={index}
+                    backgroundColor={
+                      colorMode === "light" ? "whiteAlpha.500" : ""
+                    }
                     boxShadow={{
                       sm:
                         colorMode === "light"
@@ -251,7 +219,7 @@ export default function Forecast(props) {
           height="80"
           width="80"
           radius="9"
-          color="#665d8a"
+          color="white"
           ariaLabel="three-dots-loading"
           wrapperStyle={{}}
           wrapperClassName=""

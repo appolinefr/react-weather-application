@@ -26,7 +26,7 @@ export default function ForecastDay(props) {
 
   return (
     <VStack alignItems="center" spacing="20px">
-      <Text color={text} fontSize={"lg"} fontWeight={"500"}>
+      <Text color={text} fontSize={"xl"} fontWeight={"600"}>
         {day()}
       </Text>
       <Image
@@ -34,7 +34,7 @@ export default function ForecastDay(props) {
         alt={props.data.weather[0].description}
         width="26"
       />
-      <Text fontWeight="500" color={data} fontSize={"lg"}>
+      <Text fontWeight="600" color={data} fontSize={"xl"}>
         {minTemperature()} ° |{" "}
         <Text as="span" color={dataLight}>
           {maxTemperature()} °

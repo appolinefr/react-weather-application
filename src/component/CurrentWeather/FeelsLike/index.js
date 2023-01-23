@@ -11,10 +11,10 @@ export default function FeelsLike(props) {
   return (
     <VStack alignItems="center" spacing="20px" pt={4}>
       <WiThermometer size={50} alignself={"center"} />
-      <Text alignSelf={"center"} fontWeight="500" color={text} fontSize={"lg"}>
+      <Text alignSelf={"center"} fontWeight="600" color={text} fontSize={"xl"}>
         Feels like
       </Text>
-      <Text alignSelf={"center"} fontWeight="500" color={data} fontSize={"md"}>
+      <Text alignSelf={"center"} fontWeight="600" color={data} fontSize={"lg"}>
         {Math.round(props.data)} °
       </Text>
     </VStack>

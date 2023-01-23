@@ -16,11 +16,14 @@ import { BsSun, BsMoon } from "react-icons/bs";
 
 import Forecast from "../Forecast";
 
+import Dark from "../../images/dark2.png";
+import Light from "../../images/light.jpg";
+
 export default function Weather(props) {
   const { colorMode, toggleColorMode } = useColorMode();
   const [city, setCity] = useState(props.placeHolder);
   const [coordinates, setCoordinates] = useState({ display: false });
-  const text = useColorModeValue("purple.700", "white");
+  const formStyle = useColorModeValue("#5489A5", "white");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -44,21 +47,35 @@ export default function Weather(props) {
 
   if (coordinates.display) {
     return (
-      <Box as={Container} maxW="full" minH={"80px"} py={12}>
-        <Flex justifyContent={"center"}>
+      <Box
+        as={Container}
+        maxW="full"
+        minH={"80px"}
+        py={12}
+        style={{
+          backgroundImage:
+            colorMode === "light" ? `url(${Light})` : `url(${Dark})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <Flex justifyContent={"center"} mb={8}>
           <form onSubmit={handleSubmit}>
             <Input
+              color={"white"}
               type="search"
               placeholder=" 🔍  Search for a city..."
+              _placeholder={{ color: "white" }}
+              borderColor={formStyle}
+              border={"2px"}
+              focusBorderColor={formStyle}
               m={4}
-              _placeholder={{ color: text }}
               minW={{ sm: "300px", md: "500px", lg: "700px" }}
               onChange={(e) => setCity(e.target.value)}
-              borderColor={text}
-              focusBorderColor={text}
             />
           </form>
           <IconButton
+            color={"white"}
             m={4}
             onClick={toggleColorMode}
             icon={colorMode === "light" ? <BsMoon /> : <BsSun w={6} h={6} />}
@@ -75,13 +92,24 @@ export default function Weather(props) {
   } else {
     getCoordinates();
     return (
-      <Box as={Center} maxW="7xl" mt={6} p={4}>
+      <Box
+        as={Center}
+        style={{
+          backgroundImage:
+            colorMode === "light" ? `url(${Light})` : `url(${Dark})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+        maxW="full"
+        mt={6}
+        p={4}
+      >
         <ThreeDots
           align={"center"}
           height="80"
           width="80"
           radius="9"
-          color="#665d8a"
+          color="white"
           ariaLabel="three-dots-loading"
           wrapperStyle={{}}
           wrapperClassName=""
