@@ -7,16 +7,18 @@ import {
   Heading,
   Flex,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { HiLocationMarker } from "react-icons/hi";
-import Temperature from "../Temperature";
 
 export default function CurrentWeather({ data, city }) {
   const { colorMode } = useColorMode();
+  const color = useColorModeValue("blue.800", "white");
+
   return (
     <Box
-      backgroundColor={colorMode === "light" ?  "whiteAlpha.500" : ""}
+      backgroundColor={colorMode === "light" ? "whiteAlpha.500" : ""}
       borderRadius={12}
       p={4}
       boxShadow={{
@@ -26,8 +28,8 @@ export default function CurrentWeather({ data, city }) {
       }}
     >
       <VStack alignItems="center" mt={2}>
-        <Flex align={"center"}>
-          <Heading m={2} fontWeight={400} fontSize={"5xl"}>
+        <Flex align={"center"} mt={4}>
+          <Heading m={2} fontWeight={400} fontSize={"5xl"} color={color}>
             {city}
           </Heading>
           <IconButton
@@ -35,20 +37,21 @@ export default function CurrentWeather({ data, city }) {
             fontSize={"3xl"}
             m={2}
             variant={"ghost"}
+            color={color}
           />
         </Flex>
-        <Temperature data={data.temp} />
         <Image
           src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
           alt={data.weather[0].description}
-          width="36"
+          width="48"
           alignself={"center"}
         />
         <Text
-          pb={{ sm: 1, md: 1, lg: 3 }}
+          pb={{ sm: 5, md: 7, lg: 8 }}
           textTransform={"capitalize"}
-          fontSize="2xl"
-          fontWeight="500"
+          fontSize="3xl"
+          fontWeight="600"
+          color={color}
         >
           {data.weather[0].description}
         </Text>

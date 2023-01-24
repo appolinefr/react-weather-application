@@ -17,13 +17,13 @@ import { BsSun, BsMoon } from "react-icons/bs";
 import Forecast from "../Forecast";
 
 import Dark from "../../images/dark2.png";
-import Light from "../../images/light.jpg";
+import Light from "../../images/lightsun3.png";
 
 export default function Weather(props) {
   const { colorMode, toggleColorMode } = useColorMode();
   const [city, setCity] = useState(props.placeHolder);
   const [coordinates, setCoordinates] = useState({ display: false });
-  const formStyle = useColorModeValue("#5489A5", "white");
+  const formStyle = useColorModeValue("white", "white");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -55,8 +55,9 @@ export default function Weather(props) {
         style={{
           backgroundImage:
             colorMode === "light" ? `url(${Light})` : `url(${Dark})`,
-          backgroundRepeat: "no-repeat",
+          // backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          minHeight: "1000px",
         }}
       >
         <Flex justifyContent={"center"} mb={8}>
@@ -66,6 +67,7 @@ export default function Weather(props) {
               type="search"
               placeholder=" 🔍  Search for a city..."
               _placeholder={{ color: "white" }}
+              _hover={{color: formStyle}}
               borderColor={formStyle}
               border={"2px"}
               focusBorderColor={formStyle}

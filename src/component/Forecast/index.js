@@ -8,6 +8,7 @@ import {
   Center,
   Heading,
   useColorMode,
+  useColorModeValue
 } from "@chakra-ui/react";
 
 import { ThreeDots } from "react-loader-spinner";
@@ -17,13 +18,14 @@ import ForecastDay from "../ForecastDay";
 import UvIndex from "../CurrentWeather/UvIndex";
 import Wind from "../CurrentWeather/Wind";
 import Humidity from "../CurrentWeather/Humidity";
-import FeelsLike from "../CurrentWeather/FeelsLike";
+import FeelsLike from "../CurrentWeather/Temperature";
 
 export default function Forecast(props) {
   const [weather, setWeather] = useState(null);
   const [current, setCurrent] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const { colorMode } = useColorMode();
+  const color = useColorModeValue("blue.800", "white");
 
   useEffect(() => {
     setLoaded(false);
@@ -67,7 +69,7 @@ export default function Forecast(props) {
                   md: "repeat(2, 1fr)",
                   lg: "repeat(2, 1fr)",
                 }}
-                gap={{ sm: "4", md: "6", lg: "8" }}
+                gap={{ sm: "4", md: "6", lg: "6" }}
               >
                 <GridItem
                   borderRadius={12}
@@ -159,14 +161,14 @@ export default function Forecast(props) {
                         : `0px 0px 13px rgb(237, 238, 238)`,
                   }}
                 >
-                  <FeelsLike data={current.feels_like} />
+                  <FeelsLike data={current.temp} />
                 </GridItem>
               </Grid>
             </GridItem>
           </Grid>
         </Box>
         <Box p={4}>
-          <Heading p={4}>Next 6 days</Heading>
+          <Heading color={color} py={8}>Next 6 days</Heading>
           <Grid
             templateColumns={{
               base: "repeat(2, 1fr)",

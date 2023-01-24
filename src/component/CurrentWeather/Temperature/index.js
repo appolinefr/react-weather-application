@@ -1,22 +1,22 @@
 import React from "react";
 
-import { GridItem, Flex, Text } from "@chakra-ui/react";
+import { Text, VStack, useColorModeValue } from "@chakra-ui/react";
 
+import { WiThermometer } from "react-icons/wi";
 
-
-export default function Temperature(props) {
+export default function FeelsLike(props) {
+  const text = useColorModeValue("blue.800", "white");
+  const data = useColorModeValue("blue.400", "gray.300");
+  
   return (
-    <GridItem borderRadius={12} p={4}>
-      <Flex align={"center"} justifyContent={"center"}>
-    
-        <Text
-          fontSize={"4xl"}
-          alignself={"center"}
-          fontWeight="500"
-        >
-          {Math.round(props.data)} °
-        </Text>
-      </Flex>
-    </GridItem>
+    <VStack alignItems="center" spacing="20px" pt={4}>
+      <WiThermometer size={50} alignself={"center"} />
+      <Text alignSelf={"center"} fontWeight="600" color={text} fontSize={"xl"}>
+       Temperature
+      </Text>
+      <Text alignSelf={"center"} fontWeight="600" color={data} fontSize={"lg"}>
+        {Math.round(props.data)} °
+      </Text>
+    </VStack>
   );
 }

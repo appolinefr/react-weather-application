@@ -1,11 +1,11 @@
 import React from "react";
 
-import { VStack, Text, Image , useColorModeValue} from "@chakra-ui/react";
+import { VStack, Text, Image, useColorModeValue } from "@chakra-ui/react";
 
 export default function ForecastDay(props) {
-  const text = useColorModeValue("gray.800", "white");
+  const text = useColorModeValue("blue.800", "white");
   const data = useColorModeValue("gray.600", "gray.400");
-    const dataLight = useColorModeValue("gray.700", "gray.300");
+  const dataLight = useColorModeValue("gray.700", "gray.300");
 
   function maxTemperature() {
     let maxTemp = Math.round(props.data.temp.max);
