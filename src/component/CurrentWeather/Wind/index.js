@@ -3,8 +3,8 @@ import { Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import { TbWind } from "react-icons/tb";
 
 export default function Wind(props) {
-  const text = useColorModeValue("blue.800", "white");
-  const data = useColorModeValue("blue.400", "gray.300");
+  const text = useColorModeValue("#155264", "white");
+  const data = useColorModeValue("#FD6F3B", "gray.300");
 
   return (
     <VStack alignItems="center" spacing="20px" pt={4}>

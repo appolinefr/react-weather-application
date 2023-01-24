@@ -8,7 +8,7 @@ import {
   Center,
   Heading,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { ThreeDots } from "react-loader-spinner";
@@ -25,7 +25,7 @@ export default function Forecast(props) {
   const [current, setCurrent] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const { colorMode } = useColorMode();
-  const color = useColorModeValue("blue.800", "white");
+  const color = useColorModeValue("#155264", "white");
 
   useEffect(() => {
     setLoaded(false);
@@ -168,7 +168,9 @@ export default function Forecast(props) {
           </Grid>
         </Box>
         <Box p={4}>
-          <Heading color={color} py={8}>Next 6 days</Heading>
+          <Heading color={color} py={8} >
+            Next 6 days
+          </Heading>
           <Grid
             templateColumns={{
               base: "repeat(2, 1fr)",

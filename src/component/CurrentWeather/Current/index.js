@@ -14,7 +14,7 @@ import { HiLocationMarker } from "react-icons/hi";
 
 export default function CurrentWeather({ data, city }) {
   const { colorMode } = useColorMode();
-  const color = useColorModeValue("blue.800", "white");
+  const color = useColorModeValue("#155264", "white");
 
   return (
     <Box

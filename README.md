@@ -2,10 +2,9 @@
 
 ## Table of content
 
-- [Description of Project](#description-of-project)
-- [Link to deployed application](#link-to-deployed-application)
-- [Screenshot of deployed application](#screenshot-of-deployed-application)
-
+- [Description of Project](#description)
+- [Link to deployed application](#link-to-deployed-page)
+- [Screenshot of deployed application](#screenshot-of-deployed-page)
 ## Description
 
 This app is a weather dashboard that uses OpenWeather One Call API (Links to an external site.) to retrieve weather data for cities current weather and forecast.
@@ -18,7 +17,7 @@ This app is a weather dashboard that uses OpenWeather One Call API (Links to an 
 
 ### Link to deployed page
 
-https://marvelous-cucurucho-bb2aec.netlify.app
+https://simple-react-weather-app-ac.netlify.app
 
 #### Screenshot of deployed page
 
